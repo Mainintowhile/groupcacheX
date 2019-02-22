@@ -1,0 +1,21 @@
+syntax = "proto3";
+
+package groupcachepb;
+
+message GroupPeerRequest {
+  string op = 1;
+  string group = 2;
+  string key = 3;
+  string value = 4;
+}
+
+message GroupPeerResponse {
+  bytes  value = 1;
+  bool   ok = 2;
+  bool   err = 3;
+  double minute_qps = 4;
+}
+
+service GroupCache {
+  rpc Op(GroupPeerRequest) returns (GroupPeerResponse);
+}
